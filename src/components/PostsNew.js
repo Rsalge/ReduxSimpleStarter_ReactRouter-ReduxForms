@@ -10,7 +10,11 @@ class PostsNew extends Component {
       <div className="form-group">
         <label> {field.label}</label>
         <input className="form-control" type="text" {...field.input} />
-        {field.meta.error}
+        {field.meta.touched ? (
+          <label style={{ color: "red" }}>{field.meta.error}</label>
+        ) : (
+          ""
+        )}
       </div>
     );
   }
