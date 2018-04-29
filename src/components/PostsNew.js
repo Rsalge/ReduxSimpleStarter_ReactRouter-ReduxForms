@@ -4,18 +4,30 @@ import { Field, reduxForm } from "redux-form";
  component to talk directly to the redux store
 */
 class PostsNew extends Component {
-  renderTitleField(field) {
+  renderField(field) {
     // ...field.input is an object with onChange and other event handlers that exist in it, passing all of these to <input>
     return (
-      <div>
-        <input type="text" {...field.input} />
+      <div className="form-group">
+        <label> {field.label}</label>
+        <input className="form-control" type="text" {...field.input} />
       </div>
     );
   }
+
   render() {
     return (
       <form>
-        <Field name="title" componenet={this.renderTitleField} />
+        <Field
+          name="title"
+          label="Title For Post"
+          component={this.renderField}
+        />
+        <Field name="tags" label="Tags" component={this.renderField} />
+        <Field
+          name="content"
+          label="Post Content"
+          component={this.renderField}
+        />
       </form>
     );
   }
