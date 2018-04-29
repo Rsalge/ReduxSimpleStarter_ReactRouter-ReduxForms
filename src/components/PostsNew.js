@@ -10,6 +10,7 @@ class PostsNew extends Component {
       <div className="form-group">
         <label> {field.label}</label>
         <input className="form-control" type="text" {...field.input} />
+        {field.meta.error}
       </div>
     );
   }
@@ -42,6 +43,15 @@ function validate(values) {
   //whenever the user attempts to submit the form this function will be called
   const errors = {};
   //Validate the inputs from 'values'
+  if (!values.title || values.title.length < 3) {
+    error.title = "Enter a title that is at least 3 characters!";
+  }
+  if (!values.categories) {
+    error.categories = "Enter a categorey!";
+  }
+  if (!values.content) {
+    error.content = "Enter some content please!";
+  }
 
   return errors;
   //if errors is an empty oject then the form is fine to submit, otherwise redux-form assumes form is invalid
